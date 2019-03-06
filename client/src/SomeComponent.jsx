@@ -7,10 +7,22 @@ export default class SomeComponent extends React.Component {
             showThing: false,
             externalText: 'nothing',
             increment: 0,
+            arraySome: [],
         };
         this.handleClickDiv = this.handleClickDiv.bind(this);
         this.myFirstRef = React.createRef();
     }
+    static getDerivedStateFromProps(nextProps, prevState){
+        if (prevState.externalText !== nextProps.newUser){
+            console.log(nextProps.newUser);
+            return {
+                externalText: nextProps.newUser
+            }
+        } 
+        return null;
+
+    }
+
     handleClickDiv(){
         this.setState({
             showThing: !this.state.showThing,
